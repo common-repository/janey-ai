@@ -1,0 +1,11 @@
+{
+    "repositories": [
+        {
+          "type": "vcs",
+          "url": "git@github.com:sepiariver/Janey-SDK-PHP.git"
+        }
+    ],
+    "require": {
+        "sepiariver/janey-sdk-php": "dev-master"
+    } 
+}

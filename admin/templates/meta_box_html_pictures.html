@@ -1,0 +1,52 @@
+<div class="tabs-panel">
+    <table class="widefat">
+        <thead>
+            <th>Picture</th>
+            <th>Credit</th>
+            <th>Add on Save</th>
+        </thead>
+        <tbody>
+            <tr data-cy="janey-ai-picture">
+                <td data-cy="janey-ai-picture-thumb" style="padding-top:2rem;padding-bottom:2rem">None selected</td>
+                <td style="padding-top:2rem;">Choose this option to remove the selected Picture:</td>
+                <td style="padding-top:2rem">
+                    <input type="hidden" name="janey-ai-selected-picture-nonce" value="{{ nonce }}">
+                    {% if selected_pic is empty %}
+                        <input type="radio" checked="checked" data-cy="janey-ai-picture-radio" disabled>
+                    {% else %}
+                        <input
+                            type="radio"
+                            name="janey-ai-selected-picture"
+                            id="janey-ai-picture-none"
+                            value=""
+                            data-cy="janey-ai-picture-radio"
+                        >
+                    {% endif %}
+                </td>
+            </tr>
+            {% for pic in pictures %}
+            <tr data-cy="janey-ai-picture">
+                <td data-cy="janey-ai-picture-thumb">
+                    <img src="{{ pic.urls.thumb }}">
+                </td>
+                <td>
+                    <p>Photo from <a href="https://unsplash.com/?utm_source=janey&utm_medium=referral">Unsplash</a> by <a href="{{ pic.user.links.html }}?utm_source=janey&utm_medium=referral">{{ pic.user.name|e('html') }}</a></p>
+                </td>
+                <td>
+                    <input
+                        type="radio"
+                        name="janey-ai-selected-picture"
+                        id="janey-ai-picture-{{ pic.id }}"
+                        value="{{ pic.id }}"
+                        data-cy="janey-ai-picture-radio"
+                        {% if pic.id == selected_pic %}
+                            checked="checked"
+                        {% endif %}
+                    >
+
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,29 @@
+<div class="tabs-panel">
+    <table class="widefat">
+        <thead>
+            <th>Tag</th>
+            <th>Relevance</th>
+            <th>Add on Save</th>
+        </thead>
+        <tbody>
+            {% for tag in tags %}
+                <tr data-cy="janey-ai-tag">
+                    <td data-cy="janey-ai-tag-text">{{ tag.text|e('html') }}</td>
+                    <td>{{ tag.relevance|e('html') }}</td>
+                    <td>{% if tag.text in terms_added %}
+                            <input type="checkbox" checked="checked" data-cy="janey-ai-tag-checkbox" disabled>
+                        {% else %}
+                            <input
+                                type="checkbox"
+                                name="janey-ai-tags[]"
+                                id="janey-ai-tag-{{ tag.slug }}"
+                                value="{{ tag.text }}"
+                                data-cy="janey-ai-tag-checkbox"
+                            >
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

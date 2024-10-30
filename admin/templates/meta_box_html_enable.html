@@ -1,0 +1,35 @@
+<div class="tabs-panel">
+    <div style="margin-bottom:1rem">
+        <label for="janey-ai-setting-enable">
+            <input
+                type="checkbox"
+                name="janey-ai-setting-enable"
+                id="janey-ai-setting-enable"
+                data-cy="janey-ai-enable-checkbox"
+                {% if page_settings['janey-ai-setting-enable'] is defined and plugin_settings['janey-ai-persist-analyze-enabled'] == '1' %}
+                    checked="checked"
+                {% endif %}
+            >
+            Analyze on Save?
+        </label>
+        {{ notice|raw }}
+    </div>
+    {% if tags|length > 0 %}
+        <div>
+            <label for="janey-ai-setting-picture">
+                Pictures: Search Type (on Save)
+                <select name="janey-ai-setting-picture" id="janey-ai-setting-picture" data-cy="janey-ai-picture-select">
+                	<option selected="selected" value="">None</option>
+                	<option value="relevance">By Relevance</option>
+                    {% if terms_added|length > 0 %}
+                        <option value="terms">By Terms Added</option>
+                    {% endif %}
+                </select>
+            </label>
+        </div>
+    {% else %}
+        <div>
+            <p>Please analyze your content to enable searching for royalty-free images.</p>
+        </div>
+    {% endif %}
+</div>

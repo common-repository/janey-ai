@@ -1,0 +1,15 @@
+<select name="{{ field_name }}" id="{{ field_name }}">
+    {% for v in values %}
+        {% set selected = '' %}
+        {% if v == value %}
+           {% set selected = 'selected' %}
+        {% endif %}
+        <option value="{{ v }}" {{ selected }}>
+            {% if v == '1' %}
+                Enable
+            {% else %}
+                Disable
+            {% endif %}
+        </option>
+    {% endfor %}
+</select>

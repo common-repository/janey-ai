@@ -1,0 +1,9 @@
+<select name="{{ field_name }}" id="{{ field_name }}">
+    {% for taxonomy in taxonomies %}
+        {% set selected = '' %}
+        {% if taxonomy.name == value %}
+           {% set selected = 'selected' %}
+        {% endif %}
+        <option value="{{ taxonomy.name }}" {{ selected }}>{{ taxonomy.name|e('html') }}</option>
+    {% endfor %}
+</select>
